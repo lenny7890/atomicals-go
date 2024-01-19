@@ -1,0 +1,6 @@
+.vscode
+.idea
+.config.toml
+.DS_Store
+atomicals-cli
+wallets
