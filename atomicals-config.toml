@@ -1,0 +1,6 @@
+ELECTRUMX_PROXY_BASE_URL = ["https://ep.atomicals.xyz/proxy", "https://ep.atomicalmarket.com/proxy", "https://ep.nextdao.xyz/proxy", "https://ep.consync.xyz/proxy"]
+WALLET_PATH = "./wallets"
+WALLET_FILE = "wallet.json"
+# testnet or livenet or regtest
+NETWORK = "livenet"
+DISABLE_DONATE_QUOTE = false
