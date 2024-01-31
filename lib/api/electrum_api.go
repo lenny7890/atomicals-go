@@ -64,10 +64,30 @@ func (e *ElectrumAPI) call(requestVerb, method string, params any) (gjson.Result
 	return value, errors.New("all endpoints failed")
 }
 
-func (e *ElectrumAPI) AtomicalsGetByTicker(ticker string) (gjson.Result, error) {
-	return e.call(http.MethodGet, "blockchain.atomicals.get_by_ticker", []string{ticker})
+func (e *ElectrumAPI) AtomicalsGetByTicker(ticker string) (result *ElectrumResponse[*GetByTickerResult], err error) {
+
+	call, err := e.call(http.MethodGet, "blockchain.atomicals.get_by_ticker", []string{ticker})
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal([]byte(call.Raw), &result)
+	if err != nil {
+		return nil, err
+	}
+	return result, err
 }
 
-func (e *ElectrumAPI) AtomicalsGetFtInfo(atomicalId string) (gjson.Result, error) {
-	return e.call(http.MethodGet, "blockchain.atomicals.get_ft_info", []string{atomicalId})
+func (e *ElectrumAPI) AtomicalsGetFtInfo(atomicalId string) (result *ElectrumResponse[*FtInfo], err error) {
+
+	call, err := e.call(http.MethodGet, "blockchain.atomicals.get_ft_info", []string{atomicalId})
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal([]byte(call.Raw), &result)
+	if err != nil {
+		return nil, err
+	}
+	return result, err
 }
